@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 80:3000
 
 # Define the command to run the app
-CMD [ "node", "index.jsF" ]
+CMD [ "node", "index.js" ]
