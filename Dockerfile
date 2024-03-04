@@ -1,12 +1,13 @@
-# Step 1: Specify the base image
-FROM node:latest
+FROM node:10-slim
 
 # Install Puppeteer dependencies
 RUN apt-get update \
-    && apt-get install -y wget gnupg ca-certificates procps \
-      libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev \
-      libnss3 libatk1.0-0 libcups2 libdrm2 libdbus-1-3 libxrandr2 \
-      libxcomposite1 libxcursor1 libxi6 libxtst6
+    && apt-get install -y wget gnupg ca-certificates \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
 
 # Step 2: Set the working directory inside the container
 WORKDIR /usr/src/app
