@@ -30,8 +30,8 @@ RUN apt-get update \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# Expose the port
+# Expose port 3000 internally
 EXPOSE 80:3000
 
-# Start the application
-CMD ["node", "index.js"]
+# Start the application with --no-sandbox flag
+CMD ["node", "--no-sandbox", "index.js"]
