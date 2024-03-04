@@ -14,7 +14,9 @@ app.get('/stock-price/:symbol', async (req, res) => {
     console.log("Fetching stock price for " + symbol);
     
     // Launch headless browser
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
       
       console.log("Headless browser launched");
 

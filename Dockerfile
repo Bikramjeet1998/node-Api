@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Step 4: Install dependencies
-RUN npm install
+RUN yarn install
 
 # Step 5: Copy the rest of your application's source code to the container
 COPY . .
